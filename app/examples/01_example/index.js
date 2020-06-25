@@ -17,7 +17,7 @@ extend({
   RenderPass,
   WaterPass,
   AfterimagePass,
-  UnrealBloomPass
+  UnrealBloomPass,
 });
 
 function Swarm({ count, mouse }) {
@@ -46,7 +46,7 @@ function Swarm({ count, mouse }) {
   }, [count]);
 
   // The innards of this hook will run every frame
-  useFrame(state => {
+  useFrame((state) => {
     // Makes the light follow the mouse
     light.current.position.set(
       mouse.current[0] / aspect,
@@ -106,10 +106,10 @@ function Effect() {
   const composer = useRef();
   const { scene, gl, size, camera } = useThree();
   const aspect = useMemo(() => new THREE.Vector2(size.width, size.height), [
-    size
+    size,
   ]);
   useEffect(() => void composer.current.setSize(size.width, size.height), [
-    size
+    size,
   ]);
   useFrame(() => composer.current.render(), 1);
   return (

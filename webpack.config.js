@@ -5,7 +5,7 @@ module.exports = {
   entry: "./app/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js"
+    filename: "index_bundle.js",
   },
   module: {
     rules: [
@@ -13,16 +13,27 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] }
-    ]
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
+      },
+    ],
   },
   mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
-      template: "app/index.html"
-    })
-  ]
+      template: "app/index.html",
+    }),
+  ],
 };
