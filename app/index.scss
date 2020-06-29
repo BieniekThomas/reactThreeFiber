@@ -5,14 +5,12 @@
 body {
   margin: 0;
   display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  color: black;
 }
 
 #app {
   width: 100%;
-  > div {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  height: 100%;
 }
