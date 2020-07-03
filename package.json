@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@loadable/component": "^5.13.1",
     "gsap": "^3.3.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -23,6 +24,7 @@
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.4",

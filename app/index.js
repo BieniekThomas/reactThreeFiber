@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { useTransition, animated } from "react-spring";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import loadable from "@loadable/component";
 
 import "./index.scss";
 import "./navigation.scss";
 
 import Wrapper from "./util/wrapper/wrapper";
-import ExampleOne from "./examples/01_example/index";
-import HelloCube from "./examples/02_own-example/index";
-import SplitText from "./examples/03_split_text/index";
-import NotFound from "./pages/404";
+const ExampleOne = loadable(() => import("./examples/01_example/index"));
+const HelloCube = loadable(() => import("./examples/02_own-example/index"));
+const SplitText = loadable(() => import("./examples/03_split_text/index"));
+const NotFound = loadable(() => import("./pages/404"));
 
 const TransitionRouter = (location) => {
   // const [route, setRoute] = useState(location);
