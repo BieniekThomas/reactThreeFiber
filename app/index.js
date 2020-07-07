@@ -1,66 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import { useTransition, animated } from "react-spring";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import loadable from "@loadable/component";
 
 import "./index.scss";
-import "./navigation.scss";
 
 import Wrapper from "./util/wrapper/wrapper";
-const ExampleOne = loadable(() => import("./examples/01_example/index"));
-const HelloCube = loadable(() => import("./examples/02_own-example/index"));
-const SplitText = loadable(() => import("./examples/03_split_text/index"));
-const NotFound = loadable(() => import("./pages/404"));
+import Topbar from "./util/navigation/navigation";
 
-const TransitionRouter = (location) => {
-  // const [route, setRoute] = useState(location);
-  // const transition = useTransition(route, (r) => r.pathname, {
-  //   // initial: null,
-  //   from: { opacity: 0, transform: "translateX(100px)" },
-  //   enter: { opacity: 1, transform: "translateX(0)" },
-  //   leave: { opacity: 0, transform: "translateX(50px)" },
-  //   unique: true,
-  //   reset: true,
-  // });
+// Sites
+const ExampleOne = loadable(() =>
+  import(/* webpackPrefetch: true */ "./examples/01_example/index")
+);
+const HelloCube = loadable(() =>
+  import(/* webpackPrefetch: true */ "./examples/02_own-example/index")
+);
+const SplitText = loadable(() =>
+  import(/* webpackPrefetch: true */ "./examples/03_split_text/index")
+);
+const NotFound = loadable(() =>
+  import(/* webpackPrefetch: true */ "./util/NotFound/404")
+);
 
+const App = () => {
+  const location = useLocation();
+  const transitions = useTransition(location, (location) => location.pathname, {
+    from: { opacity: 0, transform: "translate(100%, 0)" },
+    enter: { opacity: 1, transform: "translate(0%, 0)" },
+    leave: { opacity: 0, transform: "translate(-50%, 0)" },
+    reset: true,
+  });
+
+  useEffect(() => {
+    // animation
+    console.log("triggered animation");
+  }, [location]);
   return (
     <>
+      <Topbar />
       <Wrapper>
-        <Switch>
-          <Route exact path="/">
-            <HelloCube />
-          </Route>
-          <Route path="/example_1">
-            <ExampleOne />
-          </Route>
-          <Route path="/splitText">
-            <SplitText path="splitText" />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+        {transitions.map(({ item, props, key }) => (
+          <animated.div key={key} style={props}>
+            <Switch location={item}>
+              <Route exact path="/" component={HelloCube} />
+              <Route path="/example_1" component={ExampleOne} />
+              <Route path="/splitText" component={SplitText} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </animated.div>
+        ))}
       </Wrapper>
     </>
   );
 };
 
-const App = () => {
-  return (
-    <>
-      <Router>
-        <div id="navigation">
-          <nav>
-            <Link to="/">HelloCubes</Link>
-            <Link to="/example_1">Example_1</Link>
-            <Link to="/splitText">SplitText</Link>
-          </nav>
-        </div>
-        <TransitionRouter />
-      </Router>
-    </>
-  );
-};
-
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById("app")
+);
