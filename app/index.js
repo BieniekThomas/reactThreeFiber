@@ -1,12 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import ReactDOM from "react-dom";
 import { useTransition, animated } from "react-spring";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import loadable from "@loadable/component";
 
 import "./index.scss";
@@ -14,19 +9,11 @@ import "./index.scss";
 import Wrapper from "./util/wrapper/wrapper";
 import Topbar from "./util/navigation/navigation";
 
-// Sites
-const ExampleOne = loadable(() =>
-  import(/* webpackPrefetch: true */ "./examples/01_example/index")
-);
-const HelloCube = loadable(() =>
-  import(/* webpackPrefetch: true */ "./examples/02_own-example/index")
-);
-const SplitText = loadable(() =>
-  import(/* webpackPrefetch: true */ "./examples/03_split_text/index")
-);
-const NotFound = loadable(() =>
-  import(/* webpackPrefetch: true */ "./util/NotFound/404")
-);
+// Preload Sites
+const ExampleOne = loadable(() => import(/* webpackPrefetch: true */ "./examples/01_example/index"));
+const HelloCube = loadable(() => import(/* webpackPrefetch: true */ "./examples/02_own-example/index"));
+const SplitText = loadable(() => import(/* webpackPrefetch: true */ "./examples/03_split_text/index"));
+const NotFound = loadable(() => import(/* webpackPrefetch: true */ "./util/NotFound/404"));
 
 const App = () => {
   const location = useLocation();
@@ -34,13 +21,13 @@ const App = () => {
     from: { opacity: 0, transform: "translate(100%, 0)" },
     enter: { opacity: 1, transform: "translate(0%, 0)" },
     leave: { opacity: 0, transform: "translate(-50%, 0)" },
-    reset: true,
   });
 
   useEffect(() => {
     // animation
     console.log("triggered animation");
   }, [location]);
+
   return (
     <>
       <Topbar />

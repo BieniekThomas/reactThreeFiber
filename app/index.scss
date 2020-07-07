@@ -1,12 +1,27 @@
-* {
+@import url("https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap");
+
+*,
+*::after,
+*::before {
   box-sizing: border-box;
+}
+
+:root {
+  font-size: 20px;
+}
+
+::selection {
+  background: #2ddab8;
+  color: white;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  overflow: hidden;
   display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-family: "Sulphur Point", sans-serif;
+  font-size: 0.9rem;
   color: black;
   background: aquamarine;
 }

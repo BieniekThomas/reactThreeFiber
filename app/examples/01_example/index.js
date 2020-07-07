@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import React, { useCallback, useEffect, useRef, useMemo } from "react";
 import { Canvas, extend, useFrame, useThree } from "react-three-fiber";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
