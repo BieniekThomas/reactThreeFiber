@@ -5,6 +5,7 @@ const webpack = require( 'webpack' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const { BundleAnalyzerPlugin } = require( 'webpack-bundle-analyzer' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 // const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
 const ImageminMozjpeg = require( 'imagemin-mozjpeg' );
@@ -13,7 +14,10 @@ require( '@babel/register' );
 
 const isProd = process.env.NODE_ENV && process.env.NODE_ENV === 'production';
 
-console.log( 'isProd', isProd );
+const paths = {
+	SRC: path.resolve( __dirname, 'app' ),
+	DIST: path.resolve( __dirname, 'dist' ),
+};
 
 
 // for all
@@ -68,9 +72,29 @@ const config = {
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: 'app/index.html',
+			minify: {
+				useShortDoctype: true,
+				removeRedundantAttributes: true,
+				collapseWhitespace: true,
+				collapseInlineTagWhitespace: true,
+				removeScriptTypeAttributes: true,
+				removeStyleLinkTypeAttributes: true,
+			},
 		}),
 		new webpack.ProvidePlugin({
 			THREE: 'three',
+		}),
+		new CopyWebpackPlugin({
+			patterns: [
+				{
+					from: path.join( paths.SRC, '_redirects' ),
+					to: path.join( paths.DIST ),
+				},
+				{
+					from: path.join( paths.SRC, '_headers' ),
+					to: path.join( paths.DIST ),
+				},
+			],
 		}),
 	],
 };
