@@ -1,12 +1,18 @@
-import React from "react";
-import "./wrapper.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './wrapper.scss';
 
-export default ({ children }) => {
-  if (children.length > 1) {
-    return children.map((item) => {
-      return <div className="wrapper">{item}</div>;
-    });
-  } else {
-    return <div className="wrapper">{children}</div>;
-  }
+const Wrapper = ({ children }) => {
+	console.log( children.length );
+	if ( children.length > 1 ) {
+		return children.map( item => <div className="wrapper">{item}</div> );
+	}
+	return <div className="wrapper">{children}</div>;
 };
+
+Wrapper.propTypes = {
+	children: PropTypes.node.isRequired,
+};
+
+
+export default Wrapper;

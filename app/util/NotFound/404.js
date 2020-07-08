@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react';
 
-const fourOFour = () => {
-  return <div>Site not Found</div>;
-};
+const fourOFour = () => <div>Site not Found</div>;
 
 export default fourOFour;
