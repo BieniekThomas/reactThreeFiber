@@ -77,14 +77,14 @@ const config = {
 
 if ( isProd ) {
 	config.plugins = config.plugins.concat([
-		new UglifyJsPlugin({
-			uglifyOptions: {
-				compress: {
-					drop_debugger: true,
-					drop_console: true,
-				},
-			},
-		}),
+		// new UglifyJsPlugin({
+		// 	uglifyOptions: {
+		// 		compress: {
+		// 			drop_debugger: true,
+		// 			drop_console: true,
+		// 		},
+		// 	},
+		// }),
 		new ImageminPlugin({
 			plugins: [
 				ImageminMozjpeg({
