@@ -15,6 +15,11 @@
   color: white;
 }
 
+::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none;
+}
+
 body {
   margin: 0;
   padding: 0;
