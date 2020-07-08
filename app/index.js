@@ -15,10 +15,10 @@ import Wrapper from './util/wrapper/wrapper';
 import Topbar from './util/navigation/navigation';
 
 // Preload Sites
-const ExampleOne = loadable( () => import( /* webpackChunkName: "examples-01_example-index" */ './examples/01_example/index' ) );
-const HelloCube = loadable( () => import( /* webpackChunkName: "examples-02_own-example-index" */ './examples/02_own-example/index' ) );
-const SplitText = loadable( () => import( /* webpackChunkName: "examples-03_split_text-index" */ './examples/03_split_text/index' ) );
-const NotFound = loadable( () => import( /* webpackChunkName: "util-NotFound-404" */ './util/NotFound/404' ) );
+const ExampleOne = loadable( () => import( /* webpackChunkName: "example01" */ './examples/01_example/index' ) );
+const HelloCube = loadable( () => import( /* webpackChunkName: "example02" */ './examples/02_own-example/index' ) );
+const SplitText = loadable( () => import( /* webpackChunkName: "example03" */ './examples/03_split_text/index' ) );
+const NotFound = loadable( () => import( /* webpackChunkName: "notFound" */ './util/NotFound/404' ) );
 
 const App = () => {
 	const location = useLocation();
